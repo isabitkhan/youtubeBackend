@@ -1,7 +1,8 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-
-// USER Schema 
+import Joi from "joi";
+import mongoose, { Schema } from "mongoose";
+// USER Schema
 const userSchema = new Schema(
   {
     userName: {
@@ -52,7 +53,7 @@ const userSchema = new Schema(
 // encypt password
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
-  this.password = bcrypt.hash(this.password, 10);
+  this.password = await bcrypt.hash(this.password, 10);
   next();
 });
 
@@ -90,4 +91,15 @@ userSchema.methods.generateRefreshToken = function () {
   );
 };
 
+function userValidate(user) {
+  const schema = Joi.object({
+    userName: Joi.string().required(),
+    fullName: Joi.string().required(),
+    email: Joi.string().email().required(),
+    password: Joi.string().required(),
+  });
+  return schema.validate(user);
+}
+
 export const User = mongoose.model("User", userSchema);
+export { userValidate };
