@@ -1,5 +1,7 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+
+// USER Schema 
 const userSchema = new Schema(
   {
     userName: {
