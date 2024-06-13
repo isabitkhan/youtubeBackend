@@ -28,7 +28,7 @@ const userSchema = new Schema(
     },
     avatar: {
       type: String, //cloudinary url
-      required: true,
+      // required: true,
     },
     coverImage: {
       type: String,
@@ -97,6 +97,8 @@ function userValidate(user) {
     fullName: Joi.string().required(),
     email: Joi.string().email().required(),
     password: Joi.string().required(),
+    avatar: Joi.string().required(),
+    coverImage: Joi.string(),
   });
   return schema.validate(user);
 }
