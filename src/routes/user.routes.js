@@ -6,7 +6,7 @@ import {
   refreshAccessToken,
 } from "../controllers/user.controller.js";
 import { upload } from "../middlewares/multer.middleware.js";
-import { auth } from "../controllers/auth.middleware.js";
+import { auth } from "../middlewares/auth.middleware.js";
 
 const router = express.Router();
 
