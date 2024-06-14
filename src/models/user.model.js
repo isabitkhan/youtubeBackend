@@ -97,8 +97,8 @@ function userValidate(user) {
     fullName: Joi.string().required(),
     email: Joi.string().email().required(),
     password: Joi.string().required(),
-    avatar: Joi.string().required(),
-    coverImage: Joi.string(),
+    // avatar: Joi.string().required(),
+    // coverImage: Joi.string(),
   });
   return schema.validate(user);
 }
